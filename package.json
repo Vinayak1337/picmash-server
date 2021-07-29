@@ -2,7 +2,7 @@
   "name": "picmash_server",
   "version": "1.0.0",
   "description": "A server for handling backend work of picmash website.",
-  "type": "module",
+  "type": "commonjs",
   "main": "server.js",
   "scripts": {
     "start": "node app.js",

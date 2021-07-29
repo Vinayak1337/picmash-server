@@ -1,14 +1,14 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import fs from 'fs';
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const fs = require('fs');
 
-import SignInRouter from './src/Routes/signIn.js';
-import ImagesRouter from './src/Routes/images.js';
-import PostRouter from './src/Routes/posts.js';
-import VerifyRouter from './src/Routes/verify.js';
+const SignInRouter = require('./src/Routes/signIn.js');
+const ImagesRouter = require('./src/Routes/images.js');
+const PostRouter = require('./src/Routes/posts.js');
+const VerifyRouter = require('./src/Routes/verify.js');
 dotenv.config();
 
 const app = express();

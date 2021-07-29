@@ -1,8 +1,8 @@
-import UserModel from '../Provider/UserModel.js';
-import argon2 from 'argon2';
+const UserModel = require('../Provider/UserModel.js');
+const argon2 = require('argon2');
 const users = UserModel;
 
-export const Register = async (req, res) => {
+exports.Register = async (req, res) => {
 
 	const { username, email, password, displayName } = req.body;
 	if (!(email || password || username)) return res.status(400).json({ message: 'Incomplete details.' });
@@ -29,7 +29,7 @@ export const Register = async (req, res) => {
 	});
 };
 
-export const SignIn = async (req, res) => {
+exports.SignIn = async (req, res) => {
 	const { email, password } = req.body;
 	if (!(email || password)) return res.status(400).json({ message: 'Incomplete details.' });
 
@@ -51,7 +51,7 @@ export const SignIn = async (req, res) => {
 	});
 };
 
-export const DeleteUser = async (req, res) => {
+exports.DeleteUser = async (req, res) => {
 	const { userid } = req.body;
 
 	if (!userid) return res.status(400).json({ message: 'userid is required' });

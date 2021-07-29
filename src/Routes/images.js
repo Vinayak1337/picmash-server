@@ -1,7 +1,8 @@
-import express, { Router } from 'express';
-import multer from 'multer';
+const express = require('express');
+const { Router } = express;
+const multer = require('multer');
 const ImagesRouter = Router();
-import { StoreImage, DeleteImage } from '../Controllers/images.js';
+const { StoreImage, DeleteImage } = require('../Controllers/images.js');
 
 const storage = multer.diskStorage({
 	destination: function(_req, _file, cb) {
@@ -20,4 +21,4 @@ ImagesRouter.post('/', Storage.single('images'), StoreImage);
 
 ImagesRouter.delete('/', DeleteImage);
 
-export default ImagesRouter;
+module.exports = ImagesRouter;

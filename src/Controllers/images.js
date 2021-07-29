@@ -1,12 +1,12 @@
-import fs from 'fs';
+const fs = require('fs');
 
-export const StoreImage = (req, res) => {
+exports.StoreImage = (req, res) => {
 	if (!req.file) return res.status(202).json({ message: 'Incomplete details' });
 	res.status(200).json(`http://localhost:8080/images/${req.file.originalname}`);
 };
 
 
-export const DeleteImage = async (req, res) => {
+exports.DeleteImage = async (req, res) => {
 	const { filename } = req.body;
 	if (!filename) return res.status(202).json({ message: 'Incomplete details' });
 

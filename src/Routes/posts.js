@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { CreatePost, DeletePost, GetPosts } from '../Controllers/posts.js';
+const { Router } = require('express');
+const { CreatePost, DeletePost, GetPosts } = require('../Controllers/posts.js');
 
 const PostRouter = Router();
 
@@ -9,4 +9,4 @@ PostRouter.post('/', CreatePost);
 
 PostRouter.delete('/', DeletePost);
 
-export default PostRouter;
+module.exports = PostRouter;

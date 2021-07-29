@@ -1,12 +1,12 @@
-import { Router } from 'express';
-import { DeleteUser, Register, SignIn } from '../Controllers/singnIn.js';
+const { Router } = require('express');
+const { DeleteUser, Register, SignIn } = require('../Controllers/singnIn.js');
 
 const SignInRouter = Router();
 
-SignInRouter.post('/get', Register);
+SignInRouter.post('/create', Register);
 
-SignInRouter.post('/create', SignIn);
+SignInRouter.post('/get', SignIn);
 
 SignInRouter.delete('/delete', DeleteUser);
 
-export default SignInRouter;
+module.exports = SignInRouter;

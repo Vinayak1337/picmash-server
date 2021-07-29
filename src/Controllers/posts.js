@@ -1,15 +1,16 @@
-import PostModel from '../Provider/PostModel.js';
-import UserModel from '../Provider/UserModel.js';
+const fs = require('fs');
+const PostModel = require('../Provider/PostModel.js');
+const UserModel = require('../Provider/UserModel.js');
 
 const posts = PostModel;
 const users = UserModel;
 
-export const GetPosts = async (_req, res) => {
+exports.GetPosts = async (_req, res) => {
 	const Posts = posts.find();
 	res.status(200).json(Posts);
 };
 
-export const CreatePost = async (req, res) => {
+exports.CreatePost = async (req, res) => {
 	const { userid, message, imageUrl, alt, height, width, title } = req.body;
 
 	if (!userid) return res.status(408).json({ message: 'Incomplete post details - No UserId' });
@@ -29,9 +30,8 @@ export const CreatePost = async (req, res) => {
 	res.status(200).json(post);
 };
 
-import fs from 'fs';
 
-export const DeletePost = async (req, res) => {
+exports.DeletePost = async (req, res) => {
 	const { postid, userid } = req.body;
 
 	if (!(postid || userid)) return res.status(202).json({ message: 'Incomplete details' });
