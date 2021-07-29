@@ -35,7 +35,7 @@ const UserSchema = new Schema({
 	totalLikes: {
 		type: Number,
 		default: 0,
-	}
+	},
 }, { minimize: false });
 
 export default mongoose.model('users', UserSchema);

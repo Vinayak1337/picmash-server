@@ -11,7 +11,7 @@ const PostSchema = new Schema({
 		type: String,
 		required: true,
 		unique: false,
-	}, 
+	},
 	imageUrl: {
 		type: String,
 		required: false,
@@ -31,7 +31,7 @@ const PostSchema = new Schema({
 		type: String,
 		required: false,
 		unique: false,
-	}, 
+	},
 	alt: {
 		type: String,
 		required: false,
@@ -40,11 +40,11 @@ const PostSchema = new Schema({
 	postedOn: {
 		type: Date,
 		default: Date.now,
-	}, 
+	},
 	title: {
 		type: String,
 		required: false,
-	}
+	},
 }, { minimize: false });
 
 export default mongoose.model('posts', PostSchema);

@@ -1,12 +1,12 @@
-import { Router } from "express"
-import { CreatePost, DeletePost, GetPosts } from "../Controllers/posts.js"
+import { Router } from 'express';
+import { CreatePost, DeletePost, GetPosts } from '../Controllers/posts.js';
 
-const PostRouter = Router()
+const PostRouter = Router();
 
-PostRouter.get('/', GetPosts)
+PostRouter.get('/', GetPosts);
 
-PostRouter.post('/', CreatePost)
+PostRouter.post('/', CreatePost);
 
-PostRouter.delete('/', DeletePost)
+PostRouter.delete('/', DeletePost);
 
-export default PostRouter
+export default PostRouter;
