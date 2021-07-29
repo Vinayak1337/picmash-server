@@ -1,0 +1,32 @@
+{
+  "name": "picmash_server",
+  "version": "1.0.0",
+  "description": "A server for handling backend work of picmash website.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Vinayak",
+  "license": "ISC",
+  "dependencies": {
+    "argon2": "^0.27.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "mongoose": "^5.12.1",
+    "multer": "^1.4.2",
+    "netlify-lambda": "^2.0.9",
+    "nodemon": "^2.0.7",
+    "serverless-http": "^2.7.0"
+  },
+  "engines": {
+    "node": "15.x"
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0"
+  }
+}
