@@ -14,9 +14,9 @@ const storage = multer.diskStorage({
 
 const Storage = multer({ storage });
 
-ImagesRouter.post('/', Storage.single('images'), StoreImage)
-
 ImagesRouter.get('/', express.static('../postImages'))
+
+ImagesRouter.post('/', Storage.single('images'), StoreImage)
 
 ImagesRouter.delete('/', DeleteImage)
 

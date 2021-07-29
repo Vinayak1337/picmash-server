@@ -3,10 +3,10 @@ import { DeleteUser, Register, SignIn } from "../Controllers/singnIn.js"
 
 const SignInRouter = Router()
 
-SignInRouter.post('/', Register)
+SignInRouter.post('/get', Register)
 
-SignInRouter.get('/', SignIn)
+SignInRouter.post('/create', SignIn)
 
-SignInRouter.delete('/', DeleteUser)
+SignInRouter.delete('/delete', DeleteUser)
 
 export default SignInRouter

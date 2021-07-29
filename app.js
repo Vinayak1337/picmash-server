@@ -16,7 +16,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.use('/signin', SignInRouter)
+app.use('/auth', SignInRouter)
 app.use('/posts', PostRouter)
 app.use('/verify', VerifyRouter)
 app.use('/images', ImagesRouter)
