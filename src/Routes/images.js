@@ -1,24 +1,53 @@
 const express = require('express');
-const { Router } = express;
 const multer = require('multer');
-const ImagesRouter = Router();
-const { StoreImage, DeleteImage } = require('../Controllers/images.js');
+const { GridFsStorage } = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-const storage = multer.diskStorage({
-	destination: function(_req, _file, cb) {
-		cb(null, './src/postImages/');
+const { GetImage, StoreImage, DeleteImage } = require('../Controllers/images.js');
+const { Router } = express;
+const ImagesRouter = Router();
+dotenv.config();
+
+const storage = new GridFsStorage({
+	url: process.env.URI,
+	options: {
+		useNewUrlParser: true, useUnifiedTopology: true,
 	},
-	filename: function(_req, file, cb) {
-		cb(null, file.originalname);
+	file: (_req, file) => {
+		const match = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+
+		if (match.indexOf(file.mimetype) === -1) {
+			return file.originalname;
+		}
+
+		return {
+			bucketName: 'images',
+			filename: file.originalname,
+		};
 	},
 });
 
 const Storage = multer({ storage });
 
-ImagesRouter.get('/', express.static('../postImages'));
+ImagesRouter.post('/', Storage.single('image'), StoreImage);
 
-ImagesRouter.post('/', Storage.single('images'), StoreImage);
+// Static / Stream images
 
-ImagesRouter.delete('/', DeleteImage);
+const images = {
+	storage: null,
+};
+
+const conn = mongoose.connection;
+conn.once('open', () => {
+	images.storage = Grid(conn.db, mongoose.mongo);
+	images.storage.collection('images');
+	console.log('Connected to Images collection');
+});
+
+ImagesRouter.get('/:filename', GetImage.bind(null, images));
+
+ImagesRouter.delete('/:filename', DeleteImage(images));
 
 module.exports = ImagesRouter;

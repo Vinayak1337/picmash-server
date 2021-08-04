@@ -20,7 +20,6 @@ app.use('/auth', SignInRouter);
 app.use('/posts', PostRouter);
 app.use('/verify', VerifyRouter);
 app.use('/images', ImagesRouter);
-app.use('/images', express.static('./src/postImages'));
 
 app.use('/', (_req, res) => {
 	const html = fs.readFileSync('./dist/index.html', 'utf8');
