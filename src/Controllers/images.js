@@ -5,7 +5,7 @@ exports.GetImage = async (images, req, res) => {
 		readStream.pipe(res);
 	}
 	catch (error) {
-		res.status(404).send(error.message);
+		res.status(404).send('Image not found');
 	}
 };
 
@@ -21,6 +21,6 @@ exports.DeleteImage = (images) => async (req, res) => {
 		res.status(200).json('Deleted');
 	}
 	catch (error) {
-		res.status(400).json({ error: error.message });
+		res.status(400).json('Image not found');
 	}
 };

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const fs = require('fs');
 
-const SignInRouter = require('./src/Routes/signIn.js');
+const UserRouter = require('./src/Routes/user.js');
 const ImagesRouter = require('./src/Routes/images.js');
 const PostRouter = require('./src/Routes/posts.js');
 const VerifyRouter = require('./src/Routes/verify.js');
@@ -13,18 +13,18 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors(['https://picmash.netlify.app', 'http://192.168.43.31:3000']));
 app.use(bodyParser.json());
 
-app.use('/auth', SignInRouter);
-app.use('/posts', PostRouter);
-app.use('/verify', VerifyRouter);
-app.use('/images', ImagesRouter);
-
-app.use('/', (_req, res) => {
+app.get('/', (_req, res) => {
 	const html = fs.readFileSync('./dist/index.html', 'utf8');
 	res.send(html);
 });
+
+app.use('/user', UserRouter);
+app.use('/posts', PostRouter);
+app.use('/verify', VerifyRouter);
+app.use('/images', ImagesRouter);
 
 
 mongoose.connect(process.env.URI, {

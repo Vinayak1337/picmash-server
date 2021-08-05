@@ -51,6 +51,10 @@ exports.SignIn = async (req, res) => {
 	});
 };
 
+exports.update = async (_req, res) => {
+	res.status(0).json('Under construction');
+};
+
 exports.DeleteUser = async (req, res) => {
 	const { userid } = req.body;
 
