@@ -51,7 +51,7 @@ exports.SignIn = async (req, res) => {
 	});
 };
 
-exports.update = async (_req, res) => {
+exports.UpdateUser = async (_req, res) => {
 	res.status(0).json('Under construction');
 };
 
