@@ -13,7 +13,9 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors(['https://picmash.netlify.app', 'http://192.168.43.31:3000']));
+app.use(cors({
+	origin: ['https://picmash.netlify.app', 'http://192.168.43.31:3000'],
+}));
 app.use(bodyParser.json());
 
 app.get('/', (_req, res) => {

@@ -1,3 +1,3 @@
-# picmash-server for
+## picmash-server
 
-[Picmash website](https://picmash.netlify.com)
+Picmash backend server for [Picmash website](https://picmash.netlify.com)
