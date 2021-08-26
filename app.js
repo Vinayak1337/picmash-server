@@ -14,20 +14,20 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-	origin: ['https://picmash.netlify.app', 'http://192.168.43.31:3000'],
+	origin: (origin, cb) => cb(null, origin),
 }));
 app.use(bodyParser.json());
 
-app.get('/', (_req, res) => {
-	const html = fs.readFileSync('./dist/index.html', 'utf8');
-	res.send(html);
-});
 
 app.use('/user', UserRouter);
 app.use('/posts', PostRouter);
 app.use('/verify', VerifyRouter);
 app.use('/images', ImagesRouter);
 
+app.get('/', (_req, res) => {
+	const html = fs.readFileSync('./dist/index.html', 'utf8');
+	res.send(html);
+});
 
 mongoose.connect(process.env.URI, {
 	useNewUrlParser: true,
