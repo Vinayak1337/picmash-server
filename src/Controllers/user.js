@@ -30,25 +30,29 @@ exports.Register = async (req, res) => {
 };
 
 exports.SignIn = async (req, res) => {
-	const { email, password } = req.body;
-	if (!(email || password)) return res.status(400).json({ message: 'Incomplete details.' });
+	try {
+		const { email, password } = req.body;
+		if (!(email || password)) return res.status(400).json({ message: 'Incomplete details.' });
 
-	let user = await users.findOne({ email });
-	if (!user?.id) user = await users.findOne({ username: email });
-	if (!user?.id) return res.status(404).json({ message: 'Not found.' });
+		const user = await users.findOne({ email });
+		if (!user?.id) return res.status(404).json({ message: 'Not found.' });
 
-	const passVerified = await argon2.verify(user.password, password);
-	if (!passVerified) return res.status(400).json({ message: 'Either email or password is incorrect' });
+		const passVerified = await argon2.verify(user.password, password);
+		if (!passVerified) return res.status(400).json({ message: 'Either email or password is incorrect' });
 
-	return res.status(200).json({
-		id: user._id,
-		avatar: user.avatar,
-		username: user.username,
-		displayName: user.displayName,
-		email: user.email,
-		imagesPosted: user.imagesPosted,
-		totalLikes: user.totalLikes,
-	});
+		return res.status(200).json({
+			id: user._id,
+			avatar: user.avatar,
+			username: user.username,
+			displayName: user.displayName,
+			email: user.email,
+			imagesPosted: user.imagesPosted,
+			totalLikes: user.totalLikes,
+		});
+	}
+	catch (error) {
+		return res.status(400).json({ message: `Something went wrong. ${error.message}` });
+	}
 };
 
 exports.UpdateUser = async (_req, res) => {
