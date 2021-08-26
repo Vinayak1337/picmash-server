@@ -11,14 +11,14 @@ exports.GetImage = async (images, req, res) => {
 
 exports.StoreImage = (req, res) => {
 	if (!req.file) return res.status(402).json({ message: 'Incomplete details' });
-	res.status(200).json(`https://picmash-server.herokuapp.com/images/${req.file.originalname}`);
+	res.status(200).json(`https://picmash-server.herokuapp.com/images/${req.file.filename}`);
 };
 
 exports.DeleteImage = (images) => async (req, res) => {
 	try {
 		await images.storage.files.deleteOne({ filename: req.params.filename });
 
-		res.status(200).json('Deleted');
+		res.status(200).json('Deleted sucessfully');
 	}
 	catch (error) {
 		res.status(400).json('Image not found');

@@ -16,22 +16,17 @@ const storage = new GridFsStorage({
 		useNewUrlParser: true, useUnifiedTopology: true,
 	},
 	file: (_req, file) => {
-		const match = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
-
-		if (match.indexOf(file.mimetype) === -1) {
-			return file.originalname;
-		}
-
+		const filename = `${file.originalname}.${file.mimetype.replace('image/', '')}`;
 		return {
-			bucketName: 'images',
-			filename: file.originalname,
+			bucketName: 'postImages',
+			filename,
 		};
 	},
 });
 
 const Storage = multer({ storage });
 
-ImagesRouter.post('/', Storage.single('image'), StoreImage);
+ImagesRouter.post('/', Storage.single('postImage'), StoreImage);
 
 // Static / Stream images
 
@@ -42,7 +37,7 @@ const images = {
 const conn = mongoose.connection;
 conn.once('open', () => {
 	images.storage = Grid(conn.db, mongoose.mongo);
-	images.storage.collection('images');
+	images.storage.collection('postImages');
 	console.log('Connected to Images collection');
 });
 

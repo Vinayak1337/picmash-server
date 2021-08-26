@@ -1,4 +1,4 @@
-const UserModel = require('../Provider/UserModel.js');
+const UserModel = require('../Models/UserModel.js');
 const argon2 = require('argon2');
 const users = UserModel;
 
@@ -15,7 +15,7 @@ exports.Register = async (req, res) => {
 		item = await new users(user).save();
 	}
 	catch (error) {
-		return res.status(400).json({ message: 'Error registering, please use different email or username' });
+		return res.status(500).json({ message: 'Error registering, please use different email or username' });
 	}
 
 	return res.status(200).json({
@@ -38,7 +38,7 @@ exports.SignIn = async (req, res) => {
 	if (!user?.id) return res.status(404).json({ message: 'Not found.' });
 
 	const passVerified = await argon2.verify(user.password, password);
-	if (!passVerified) return res.status(400).json({ message: `Either ${email.includes('.com') && email.includes('@') ? 'email' : 'username'} or password is incorrect` });
+	if (!passVerified) return res.status(400).json({ message: 'Either email or password is incorrect' });
 
 	return res.status(200).json({
 		id: user._id,
@@ -52,7 +52,7 @@ exports.SignIn = async (req, res) => {
 };
 
 exports.UpdateUser = async (_req, res) => {
-	res.status(0).json('Under construction');
+	res.status(501).json('Under construction');
 };
 
 exports.DeleteUser = async (req, res) => {
