@@ -35,7 +35,7 @@ exports.SignIn = async (req, res) => {
 		if (!(email || password)) return res.status(400).json({ message: 'Incomplete details.' });
 
 		const user = await users.findOne({ email });
-		if (!user?.id) return res.status(404).json({ message: 'Not found.' });
+		if (!user) return res.status(404).json({ message: 'Not found.' });
 
 		const passVerified = await argon2.verify(user.password, password);
 		if (!passVerified) return res.status(400).json({ message: 'Either email or password is incorrect' });
