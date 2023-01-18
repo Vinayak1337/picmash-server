@@ -5,19 +5,19 @@ const posts = PostModel;
 const users = UserModel;
 
 exports.GetPosts = async (_req, res) => {
-	const Posts = posts.find({});
+	const Posts = await posts.find({});
 	res.status(200).json(Posts);
 };
 
 exports.CreatePost = async (req, res) => {
-	const { userid, message, imageUrl, alt, height, width, title } = req.body;
+	const { userid, message, imageUrl, alt, height, width, title, name } = req.body;
 
 	if (!userid) return res.status(400).json({ message: 'Incomplete post details - No UserId' });
 	if (!message && !imageUrl) return res.status(400).json({ message: 'Incomplete post details - No Message / Image URL' });
 	if (imageUrl && !(alt || height || width)) return res.status(400).json({ message: 'Incomplete post details - Incomplete Image properties' });
 
 	const postObject = {
-		userid, message, imageUrl, alt, height, width, title,
+		userid, message, imageUrl, alt, height, width, title, name,
 	};
 
 	const post = await new posts(postObject).save();
