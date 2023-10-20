@@ -14,7 +14,7 @@ exports.GetImage = async (images, req, res) => {
 
 exports.StoreImage = (req, res) => {
 	if (!req.file) return res.status(402).json({ message: 'Incomplete details' });
-	res.status(200).json(`${SECRETS.PORT}/images/${req.file.filename}`);
+	res.status(200).json(`${SECRETS.BASE_URL}/images/${req.file.filename}`);
 };
 
 exports.DeleteImage = images => async (req, res) => {
