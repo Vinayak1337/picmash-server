@@ -14,26 +14,26 @@ Picmash backend server for the [Picmash website](https://picmash-app.netlify.com
 
 ### User Authentication
 
-- [POST /create](https://picmash-server.herokuapp.com/user/create) - Register a new user.
-- [POST /get](https://picmash-server.herokuapp.com/user/get) - Sign in an existing user.
-- [PUT /update](https://picmash-server.herokuapp.com/user/update) - Update user data.
-- [DELETE /delete](https://picmash-server.herokuapp.com/user/delete) - Delete a user.
+- [POST /create](https://picmash-server.onrender.com/user/create) - Register a new user.
+- [POST /get](https://picmash-server.onrender.com/user/get) - Sign in an existing user.
+- [PUT /update](https://picmash-server.onrender.com/user/update) - Update user data.
+- [DELETE /delete](https://picmash-server.onrender.com/user/delete) - Delete a user.
 
 ### Posts
 
-- [GET /](https://picmash-server.herokuapp.com/posts/) - Retrieve all posts.
-- [POST /](https://picmash-server.herokuapp.com/posts/) - Create a new post.
-- [DELETE /](https://picmash-server.herokuapp.com/posts/) - Delete an existing post.
+- [GET /](https://picmash-server.onrender.com/posts/) - Retrieve all posts.
+- [POST /](https://picmash-server.onrender.com/posts/) - Create a new post.
+- [DELETE /](https://picmash-server.onrender.com/posts/) - Delete an existing post.
 
 ### Verification
 
-- [POST /verify](https://picmash-server.herokuapp.com/verify/) - Verify if a username or email already exists in the database.
+- [POST /verify](https://picmash-server.onrender.com/verify/) - Verify if a username or email already exists in the database.
 
 ### Image Handling
 
-- [POST /](https://picmash-server.herokuapp.com/images/) - Store an image.
-- [GET /](https://picmash-server.herokuapp.com/images/) - Stream an image to the URL.
-- [DELETE /](https://picmash-server.herokuapp.com/images/) - Delete an image from the database.
+- [POST /](https://picmash-server.onrender.com/images/) - Store an image.
+- [GET /](https://picmash-server.onrender.com/images/) - Stream an image to the URL.
+- [DELETE /](https://picmash-server.onrender.com/images/) - Delete an image from the database.
 
 ## Getting Started
 
