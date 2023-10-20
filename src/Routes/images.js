@@ -5,23 +5,32 @@ const Grid = require('gridfs-stream');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-const { GetImage, StoreImage, DeleteImage } = require('../Controllers/images.js');
+const {
+	GetImage,
+	StoreImage,
+	DeleteImage
+} = require('../Controllers/images.js');
+const SECRETS = require('../util.js');
 const { Router } = express;
 const ImagesRouter = Router();
 dotenv.config();
 
 const storage = new GridFsStorage({
-	url: process.env.URI,
+	url: SECRETS.MONGODB_URI,
 	options: {
-		useNewUrlParser: true, useUnifiedTopology: true,
+		useNewUrlParser: true,
+		useUnifiedTopology: true
 	},
 	file: (_req, file) => {
-		const filename = `${file.originalname}.${file.mimetype.replace('image/', '')}`;
+		const filename = `${file.originalname}.${file.mimetype.replace(
+			'image/',
+			''
+		)}`;
 		return {
 			bucketName: 'postImages',
-			filename,
+			filename
 		};
-	},
+	}
 });
 
 const Storage = multer({ storage });
@@ -31,7 +40,7 @@ ImagesRouter.post('/', Storage.single('postImage'), StoreImage);
 // Static / Stream images
 
 const images = {
-	storage: null,
+	storage: null
 };
 
 const conn = mongoose.connection;
